@@ -27,7 +27,7 @@ jobs:
       run: mkdir -p data
 
     - name: Run script
-      run: python your_script.py
+      run: python LibrarySeats.py
 
     - name: Commit and push if it changed
       run: |
