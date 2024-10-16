@@ -30,15 +30,9 @@ jobs:
       run: python LibrarySeats.py
 
     - name: Commit and push if it changed
-      env:
-        GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}  # Use the secret here
       run: |
         git config user.name github-actions
         git config user.email github-actions@github.com
-        if [ -f data/results.csv ]; then
-        git add data/results.csv
-        git commit -m "Update results [skip ci]" || exit 0
-        git push https://$GITHUB_TOKEN@github.com/Adupadu123/LibrarySeats.git HEAD:main
-        else
-          echo "No results.csv file found, skipping commit."
-        fi
+        git add .
+        git commit -m "Update CSV [skip ci]" || exit 0
+        git push
