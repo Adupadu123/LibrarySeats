@@ -11,11 +11,11 @@ soup=BeautifulSoup(response.text, 'html.parser')
 lst=soup.find_all('span', {'class': 'mainStat'})
 lst1=soup.find_all('h2')
 lst=list(zip(lst,lst1))
-lst=[(y.text,x.text.split()[0],float(x.text.split()[0])/float(x.text.split()[4])*100,datetime.datetime.today().date(),datetime.datetime.now().time()) for (x,y) in lst]
+lst=[(y.text,x.text.split()[0] if 'Currently' not in x.text.split() else -1,float(x.text.split()[0])/float(x.text.split()[4])*100 if 'Currently' not in x.text.split() else -1,datetime.datetime.today().date(),datetime.datetime.now().time()) for (x,y) in lst]
 df=pd.DataFrame(lst,columns=['Library','Free Seats','% Free','Date', 'Time'])
 df.style.hide(axis='index')
 df=df.sort_values(by='% Free', ascending=False)
 print(df.to_string(index=False))
-df.copy().to_csv('data/results.csv', mode='a', header=not os.path.exists('data/results.csv'), index=False)
+df.copy().to_csv('results.csv', mode='a', header=not os.path.exists('results.csv'), index=False)
 t2=time.perf_counter()
 print(t2-t1)
