@@ -31,12 +31,12 @@ lst3=[a if 'Closed' in a[0] else (datetime.datetime.strptime(a[0], "%I:%M%p") if
 df1=pd.DataFrame(lst3,columns=['Opening Hour', 'Closing Hour','Library'])
 df['key']=1
 df1['key']=1
-df2=pd.merge(df,df1,on='key',suffixes=['_1','_2'])
-df2['isin']=df2.apply(lambda row: row['Library_2'] in row['Library_1'] and not ('Language' in row['Library_1'] and 'Language' not in row['Library_2']), axis=1)
+df2=pd.merge(df,df1,on='key',suffixes=['','_2'])
+df2['isin']=df2.apply(lambda row: row['Library_2'] in row['Library'] and not ('Language' in row['Library'] and 'Language' not in row['Library_2']), axis=1)
 df2=df2[df2['isin']==True]
-df2.drop(columns=['key','Library_2','isin'])
+df2=df2.drop(columns=['key','Library_2','isin'])
 # df2=df2.sort_values(by='% Free', ascending=False)
-# print(df.to_string(index=False))
-df2.copy().to_csv('data/resultsophr.csv', mode='a', header=not os.path.exists('data/results.csv'), index=False)
+# print(df2.to_string(index=False))
+df2.copy().to_csv('data/resultsophr.csv', mode='a', header=not os.path.exists('data/resultsophr.csv'), index=False)
 # t2=time.perf_counter()
 # print(t2-t1)
