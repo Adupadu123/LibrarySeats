@@ -28,7 +28,7 @@ x=soup.find_all('tr',{'class':'s-lc-whw-loc'})
 # print(soup.prettify())
 lst3=[('12:01am','11:59pm',a[1]) if 'Student Centre' in a[1] else (a[0][0],a[0][2],a[1].strip()) if 'Closed' not in a[0] else ('Closed','Closed',a[1]) for a in [(tuple(i.find_all('td')[datetime.datetime.today().weekday()+1].span.text.strip().split()),b) for b in set([l1 for l1 in lib for i in x if l1 in i.text]) for i in x if b in i.text]]
 lst3=[a if 'Closed' in a[0] else (datetime.datetime.strptime(a[0], "%I:%M%p") if ":" in a[0] else datetime.datetime.strptime(a[0], "%I%p"),datetime.datetime.strptime(a[1], "%I:%M%p") if ":" in a[1] else datetime.datetime.strptime(a[1], "%I%p"),str(a[2])) for a in lst3]
-df1=pd.DataFrame(lst3,columns=['Opening Hour', 'Closing Hour','Library'])
+df1=pd.DataFrame(lst3,columns=['Opening Time', 'Closing Time','Library'])
 df['key']=1
 df1['key']=1
 df2=pd.merge(df,df1,on='key',suffixes=['','_2'])
