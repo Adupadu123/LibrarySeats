@@ -37,6 +37,6 @@ df2=df2[df2['isin']==True]
 df2=df2.drop(columns=['key','Library_2','isin'])
 # df2=df2.sort_values(by='% Free', ascending=False)
 # print(df2.to_string(index=False))
-df2.copy().to_csv('data/resultsophr.csv', mode='a', header=not os.path.exists('data/resultsophr.csv'), index=False)
+df2.copy().to_csv('data/results.csv', mode='a', header=not os.path.exists('data/results.csv'), index=False)
 # t2=time.perf_counter()
 # print(t2-t1)
