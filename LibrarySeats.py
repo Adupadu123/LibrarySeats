@@ -41,10 +41,12 @@ try:
     df2.copy().to_csv('data/results.csv', mode='a', header=not os.path.exists('data/results.csv'), index=False)
     # t2=time.perf_counter()
     # print(t2-t1)
-except Exception as e:
-    print(e)
+except Exception:
     with open('DebugHTML.txt','w',encoding='utf-8') as file:
         file.write(soup.prettify())
     with open('DebugHTML1.txt','w',encoding='utf-8') as file:
         file.write(soup1.prettify())
+    if 'bad gateway error' in soup.text:
+        print('Bad Gateway Error')
+    raise
     
