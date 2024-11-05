@@ -41,6 +41,10 @@ try:
     df2.copy().to_csv('data/results.csv', mode='a', header=not os.path.exists('data/results.csv'), index=False)
     # t2=time.perf_counter()
     # print(t2-t1)
-except Exception:
-    print(soup.prettify())
-    print(soup1.prettify())
+except Exception as e:
+    print(e)
+    with open('DebugHTML.txt','w',encoding='utf-8') as file:
+        file.write(soup.prettify())
+    with open('DebugHTML1.txt','w',encoding='utf-8') as file:
+        file.write(soup1.prettify())
+    
