@@ -42,10 +42,10 @@ try:
     # t2=time.perf_counter()
     # print(t2-t1)
 except Exception:
-    with open('DebugHTML.txt','w',encoding='utf-8') as file:
-        file.write(soup.prettify())
-    with open('DebugHTML1.txt','w',encoding='utf-8') as file:
-        file.write(soup1.prettify())
+    # with open('DebugHTML.txt','w',encoding='utf-8') as file:
+    #     file.write(soup.prettify())
+    # with open('DebugHTML1.txt','w',encoding='utf-8') as file:
+    #     file.write(soup1.prettify())
     if 'bad gateway error' in soup.text:
         print('Bad Gateway Error')
     raise
